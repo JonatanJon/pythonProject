@@ -4,7 +4,7 @@ import pytesseract
 import matplotlib.pyplot as plt
 
 def print_hi(name):
-    image = cv.imread("photo15.jpg")
+    image = cv.imread("photo20.jpg")
     imageBGRGray = cv.cvtColor(image, cv.COLOR_BGR2GRAY)
     imageRGBGray = cv.cvtColor(imageBGRGray, cv.COLOR_BGR2RGB)
     shape = cv.imread("shape2.jpg")
@@ -14,7 +14,7 @@ def print_hi(name):
     normshapeRGBGray = cv.normalize(shapeRGBGray, None, 0, 1, cv.NORM_MINMAX, cv.CV_32F)
     h, w, c = normshapeRGBGray.shape[::]
     res = cv.matchTemplate(normimageRGBGray, normshapeRGBGray, cv.TM_CCOEFF_NORMED)
-    threshold = 0.1
+    threshold = 0.35
     loc = np.where(res >= threshold)
     for pt in zip(*loc[::-1]):
         cv.rectangle(normimageRGBGray, pt, (pt[0] + w, pt[1] + h), (0, 0, 255), 1)
